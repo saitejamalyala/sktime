@@ -164,6 +164,16 @@ def all_estimators(
     def _is_estimator(name, klass):
         # Check if klass is subclass of base estimators, not an base class itself and
         # not an abstract class
+
+        if name == "ComposableTimeSeriesForestRegressor":
+            print(
+                issubclass(klass, VALID_ESTIMATOR_TYPES),
+                klass not in VALID_ESTIMATOR_TYPES,
+                not _is_abstract(klass),
+                not _is_base_class(name),
+                klass
+            )
+
         return (
             issubclass(klass, VALID_ESTIMATOR_TYPES)
             and klass not in VALID_ESTIMATOR_TYPES
